@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="p1"></p>
+    <p id="p2"></p>
+    <p id="p3"></p>
+    <p id="p4"></p>
+    <p id="p5"></p>
+    <p id="p6"></p>
+    <script>
+      let studentFirstName = 'Hamed';
+      let studentLastName = 'Kaveh';
+
+      document.getElementById('p1').innerHTML = studentFirstName + ' ' + studentLastName;
+
+      let teacherFirstName = 'Hamid';
+      let teacherLastName = 'Matin';
+      document.getElementById('p2').innerHTML = teacherFirstName + ' ' + teacherLastName;
+
+      // console.log(this);
+
+      let testForThis = function(){
+        let a = 10
+        console.log(a)
+      }
+
+      testForThis()
+
+      let student1 = {
+        firstName: 'Hamed',
+        lastName: 'Kaveh',
+        fullName: function(){
+          let firstName='fname', lastName = 'lname'
+          // return student1.firstName + ' ' + student1.lastName
+          return this.firstName + ' ' + this.lastName
+        }
+      };
+
+      let student2 = {
+        firstName: 'Arman',
+        lastName: 'Khadem',
+        
+        fullName: function(){
+          // return student2.firstName + ' ' + student2.lastName
+          return this.firstName + ' ' + this.lastName
+        }
+      };
+
+      document.getElementById('p3').innerHTML = student1.firstName + ' ' + student1.lastName;
+      document.getElementById('p4').innerHTML = student2.firstName + ' ' + student2.lastName;
+
+      document.getElementById('p5').innerHTML = student1.fullName()
+      document.getElementById('p6').innerHTML = student2.fullName()
+    </script>
+  </body>
+</html>
