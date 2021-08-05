@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      .password {
+        width: 150px;
+        position: relative;
+        height: 24px;
+        /* padding: 18px; */
+        /* border: 1px solid; */
+      }
+      .password img {
+        display: block;
+        width: 24px;
+        height: 24px;
+        position: absolute;
+        right: 5px;
+        top: 0;
+        cursor: pointer;
+      }
+      .password input {
+        display: block;
+        width: 100%;
+        height: 100%;
+        padding-right: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="password">
+      <input type="password" placeholder="Enter Password" id="pws" />
+      <img src="images/eye.png" alt="eye" id="show-password" />
+    </div>
+
+    <script>
+      var showPassword = document.getElementById('show-password');
+
+      showPassword.onmousedown = function (evt) {
+        document.getElementById('pws').type = 'text';
+      };
+      showPassword.onmouseup = function (evt) {
+        document.getElementById('pws').type = 'password';
+      };
+      showPassword.onmouseout = function (evt) {
+        document.getElementById('pws').type = 'password';
+      };
+    </script>
+  </body>
+</html>

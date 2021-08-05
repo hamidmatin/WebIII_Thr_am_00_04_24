@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #div1 {
+        width: 300px;
+        height: 300px;
+        background-color: lightskyblue;
+      }
+      div{
+        transition: all 1s;
+
+      }
+
+      .aniamte {
+        animation: goright 5s forwards;
+      }
+
+      @keyframes goright {
+        0% {
+          transform: translateX(0) rotate(0);
+        }
+        100% {
+          transform: translateX(500px) rotate(180deg);
+          background-color: greenyellow;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <input type="text" id="inp1" />
+    <div>
+      <h3>Sample</h3>
+
+      <div id="div1">
+        <b>Event</b>
+      </div>
+
+      <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus iste tempore itaque tempora
+        aut blanditiis sit ad, dolores cupiditate, rem culpa molestias soluta sequi, quibusdam vel non
+        laudantium eum? Accusamus!
+      </p>
+    </div>
+
+
+    <script>
+      var myFn = function () {};
+      // var person = {
+      //   firstName: 'Hamid',
+      //   lastName: 'Matin',
+      //   fullName: function(){
+
+      //   }
+      // }
+      var person = {
+        firstName: 'Hamid',
+        lastName: 'Matin',
+        fullName: null,
+      };
+
+      person.fullName = function () {};
+
+      var myDiv = document.getElementById('div1');
+
+      console.log(myDiv.onclick);
+
+      myDiv.onclick = function (evt) {
+        // console.log(this);
+        this.style.height = '100px';
+        this.style.width = '100px';
+
+        /*
+          this.parentElement
+          this.children
+          this.nextElementSibling
+          this.previousElementSibling
+        */
+        // console.log(this.parentElement)
+        // console.log(this.nextElementSibling)
+        // console.log(this.previousElementSibling)
+        // console.log(this.children)
+
+        this.parentElement.style.padding = '50px';
+        this.parentElement.style.backgroundColor = '#eee';
+
+        console.log(evt);
+      };
+
+      myDiv.ondblclick = function () {
+        this.classList.toggle('aniamte');
+      };
+
+      myDiv.onmousemove = function (evt) {
+        console.log(evt);
+      };
+
+      // document.getElementById('inp1').onkeypress = function(e){
+      //   console.log(e)
+      // }
+
+      /*
+        element.addEventListener('event', function(e){})
+      */
+     
+      document.getElementById('inp1').addEventListener('keypress', function (e) {
+        console.log(e);
+      });
+    </script>
+  </body>
+</html>
