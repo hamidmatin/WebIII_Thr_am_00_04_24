@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="p1"></p>
+    <p id="p2"></p>
+    <p id="p3"></p>
+    <p id="p4"></p>
+    <p id="p5"></p>
+    <p id="p6"></p>
+    <p id="p7"></p>
+    <script>
+      /*
+        if (condition) {
+          //block of code to be executed if the condition is true
+        }
+      */
+
+      var text;
+      // var hour = (new Date).getHours();
+      var hour = Math.floor(Math.random() * 24);
+
+      text = 'Good Evening';
+      if (hour < 18) {
+        text = 'Good Day';
+      }
+      document.getElementById('p1').innerHTML = text;
+
+      /*
+        if (condition) {
+          block of code to be executed if the condition is true
+        } 
+        else {
+          block of code to be executed if the condition is false
+        }
+      */
+
+      var greeting;
+
+      // if (hour < 18) {
+      //   greeting = 'Good Day';
+      // }
+      // else {
+      //   greeting = 'Good Evening';
+      // }
+
+      // if (hour < 18)
+      //   greeting = 'Good Day';
+      // else
+      //   greeting = 'Good Evening';
+
+      /* 
+        ternary operator 
+
+        variable = condition ? value if cond is true : value if cond is false
+
+      */
+
+      greeting = hour < 18 ? 'Good Day' : 'Good Evening';
+
+      document.getElementById('p2').innerHTML = greeting;
+
+      // var day = (new Date).getDay();
+      var day = 3;
+      var dayName;
+
+      // if (day === 0) {
+      //   dayName = 'Sunday';
+      // } else {
+      //   if (day === 1) {
+      //     dayName = 'Monday';
+      //   } else {
+      //     if (day === 2) {
+      //       dayName = 'Tuesday';
+      //     } else {
+      //       if (day === 3) {
+      //         dayName = 'Wednsday';
+      //       } else {
+      //         if (day === 4) {
+      //           dayName = 'Thursday';
+      //         } else {
+      //           if (day === 5) {
+      //             dayName = 'Friday';
+      //           } else {
+      //             dayName = 'Saturday';
+      //           }
+      //         }
+      //       }
+      //     }
+      //   }
+      // }
+
+      // if (day === 0) {
+      //   dayName = 'Sunday';
+      // } else
+      //   if (day === 1) {
+      //     dayName = 'Monday';
+      //   } else
+      //     if (day === 2) {
+      //       dayName = 'Tuesday';
+      //     } else
+      //       if (day === 3) {
+      //         dayName = 'Wednsday';
+      //       } else
+      //         if (day === 4) {
+      //           dayName = 'Thursday';
+      //         } else
+      //           if (day === 5) {
+      //             dayName = 'Friday';
+      //           } else {
+      //             dayName = 'Saturday';
+      //           }
+
+      if (day === 0) {
+        dayName = 'Sunday';
+      } else if (day === 1) {
+        dayName = 'Monday';
+      } else if (day === 2) {
+        dayName = 'Tuesday';
+      } else if (day === 3) {
+        dayName = 'Wednsday';
+      } else if (day === 4) {
+        dayName = 'Thursday';
+      } else if (day === 5) {
+        dayName = 'Friday';
+      } else {
+        dayName = 'Saturday';
+      }
+
+      document.getElementById('p3').innerHTML = dayName;
+
+      /*
+        switch(expression) {
+            case x:
+                // code block
+                break;
+            case y:
+                // code block
+                break;
+            default:
+                // code block
+        }
+      */
+      switch (day) {
+        case 3:
+          dayName = 'Wednsday';
+          break;
+          
+        case 0:
+          dayName = 'Sunday';
+          break;
+        case 1:
+          dayName = 'Monday';
+          break;
+        case 2:
+          dayName = 'Tuesday';
+          break;
+
+        case 4:
+          dayName = 'Thursday';
+          break;
+        case 5:
+          dayName = 'Friday';
+          break;
+        default:
+          dayName = 'Saturday';
+          break;
+      }
+      document.getElementById('p4').innerHTML = dayName;
+
+      var weekStatus;
+      switch (day) {
+        case 4:
+        case 5:
+          weekStatus = 'Weekend';
+          break;
+        default:
+          weekStatus = 'Weekday';
+          break;
+      }
+      document.getElementById('p5').innerHTML = weekStatus;
+
+      if (day === 4 || day === 5) weekStatus = 'Weekend';
+      else weekStatus = 'Weekday';
+
+      document.getElementById('p6').innerHTML = weekStatus;
+
+      /*
+        ternary operator
+        variable = condition ? value1 : value2;
+      */
+      weekStatus = day === 4 || day === 5 ? 'Weekend' : 'Weekday';
+      document.getElementById('p7').innerHTML = weekStatus;
+    </script>
+  </body>
+</html>
