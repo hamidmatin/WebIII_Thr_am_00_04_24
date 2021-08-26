@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="p1"></p>
+    <p id="p2"></p>
+    <p id="p3"></p>
+    <p id="p4"></p>
+
+    <script>
+    var x = 19.656;
+    document.getElementById('p1').innerHTML =
+        'x = ' + x + '<br>' +
+        'x.toExponential() = ' +  x.toExponential() + '<br>' +
+        'x.toExponential(2) = ' + x.toExponential(2) + '<br>' +
+        'x.toExponential(4) = ' + x.toExponential(4) + '<br>' +
+        'x.toExponential(6) = ' + x.toExponential(6);
+
+        /*
+            string Litheral 
+              "...."
+              '....'
+             New =>  `....`  (Format string) => `......${variable} ... ${variable} ...`
+
+        */
+
+        /* multi line string */
+        var sample = `Hamid ajkfakjd
+        sdSHDHSdj
+        aafajdsfaf
+        akfadk`;
+
+        var name = 'hamid';
+       
+
+        // document.getElementById('p2').innerHTML = 'My Name is : ' + name;
+        document.getElementById('p2').innerHTML = `My Name is : ${name}`;
+
+        document.getElementById('p3').innerHTML = `
+            x = ${x} <br>
+            x.toExponential() = ${x.toExponential()} <br>
+            x.toExponential(2) = ${x.toExponential(2)} <br>
+            x.toExponential(4) = ${x.toExponential(4)} <br>
+            x.toExponential(6) = ${x.toExponential(6)}`;
+
+        var person = {
+            firstName : 'Hamid',
+            lastName: 'Matin',
+            fullName : function(){
+                // return this.firstName + ' ' + this.lastName;
+                return `${this.firstName} ${this.lastName}`;
+            }
+        }
+
+        document.getElementById('p4').innerHTML = person.fullName();
+    </script>
+</body>
+</html>
