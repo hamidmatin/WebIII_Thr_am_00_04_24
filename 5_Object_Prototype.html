@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="p1"></p>
+    <p id="p2"></p>
+    <script>
+      function Student(fName, lName) {
+        this.firstName = fName;
+        this.lastName = lName;
+      }
+
+      let st1 = new Student('Mohammad', 'Amiri');
+      let st2 = new Student('Morteza', 'Bayanlou');
+
+      st1.myAge = 30;
+      st1.myFullName = function () {
+        return this.firstName + ' ' + this.lastName;
+      };
+      Student.prototype.age = 0;
+
+      Student.prototype.fullName = function () {
+        return this.firstName + ' ' + this.lastName;
+      };
+
+      st1.age = 30;
+      st2.age = 25;
+
+      document.getElementById('p1').innerHTML = st1.fullName() + ', age = ' + st1.age;
+      document.getElementById('p2').innerHTML = st2.fullName() + ', age = ' + st2.age;
+    </script>
+  </body>
+</html>
