@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>While</h3>
+    <p id="p1"></p>
+    <h3>do...while</h3>
+    <p id="p2"></p>
+    <h3>Counter</h3>
+    <p id="p3"></p>
+    <h3>Count down</h3>
+    <p id="p4"></p>
+    <h3>for loop</h3>
+    <p id="p5"></p>
+    <p id="p5-1"></p>
+    <p id="p6"></p>
+    <p id="p7"></p>
+    <h3>Object</h3>
+    <p id="p8"></p>
+    <p id="p9"></p>
+    <p id="p10"></p>
+    <p id="p10-1"></p>
+    <h3>The For/In Loop</h3>
+    <p id="p11"></p>
+    <h3>The For/Of Loop</h3>
+    <p id="p12"></p>
+    <p id="p13"></p>
+    <p id="p14"></p>
+    <p id="p15"></p>
+    <p id="p16"></p>
+    <p id="p17"></p>
+    <p id="p18"></p>
+    <p id="p19"></p>
+    <p id="p20"></p>
+    <script>
+      /*
+        while (condition) {
+            // code block to be executed
+        }
+      */
+      var x = Math.floor(Math.random() * 300);
+      var txt = '';
+      while (x < 200) {
+        txt += 'x = ' + x + '<br>';
+        x = Math.floor(Math.random() * 300);
+      }
+      document.getElementById('p1').innerHTML = txt;
+
+      /*
+        do {
+            // code block to be executed
+        }while (condition);
+     */
+
+      txt = '';
+      do {
+        x = Math.floor(Math.random() * 300);
+        txt += 'x = ' + x + '<br>';
+      } while (x < 200);
+      document.getElementById('p2').innerHTML = txt;
+
+      /************** Counter ***********/
+      /*
+        var counter = init;
+        while (counter ? value) {
+            // Block code
+            step for counter;
+        }
+      */
+
+      txt = '';
+      var c = 0;
+      while (c < 10) {
+        txt += 'c = ' + c + '<br>';
+        // c++;
+        // c += .2;
+        // c += .5;
+        c += 2;
+      }
+      document.getElementById('p3').innerHTML = txt;
+
+      txt = '';
+      c = 10;
+      while (c > 0) {
+        txt += 'c = ' + c + '<br>';
+        // c--;
+        // c -= .2;
+        // c -= .5;
+        c -= 2;
+      }
+      document.getElementById('p4').innerHTML = txt;
+
+      /**********  for  ************/
+      /*
+        for (init; condition; step) {
+          // code block to be executed
+        }
+      */
+
+      // txt = '';
+      // for (c = 0; c < 10; c++) {
+      //   txt += 'c = ' + c + '<br>';
+      // }
+
+      for (c = 0, txt = ''; c < 10; c++) {
+        txt += 'c = ' + c + '<br>';
+      }
+      document.getElementById('p5').innerHTML = txt;
+
+      for (
+        txt = '', x = Math.floor(Math.random() * 300);
+        x < 200;
+        x = Math.floor(Math.random() * 300)
+      ) {
+        txt += 'x = ' + x + '<br>';
+      }
+      document.getElementById('p5-1').innerHTML = txt;
+
+      for (
+        c = 0, txt = '', x = Math.floor(Math.random() * 11);
+        c < 10 && x < 8;
+        c++, x = Math.floor(Math.random() * 11)
+      ) {
+        txt += 'c = ' + c + ', x = ' + x + '<br>';
+      }
+      document.getElementById('p6').innerHTML = txt + 'Last x = ' + x;
+
+      var cars = ['BMW', 'Volvo', 'Saab', 'Ford', 'Peykan', 'Samand', 'Pride'];
+      for (var i = 0, txt = ''; i < cars.length; i++) {
+        txt += cars[i] + '<br>';
+      }
+      document.getElementById('p7').innerHTML = txt;
+
+      /*****************************/
+      var person = { fname: 'John', lname: 'Doe', age: 25 };
+      document.getElementById('p8').innerHTML = person.fname;
+
+      document.getElementById('p9').innerHTML = person['fname'];
+      var prop = 'age';
+      document.getElementById('p10').innerHTML = person[prop];
+
+      txt = ''
+      prop = 'fname';
+      txt += 'person[' + prop + '] = '+ person[prop] + '<br>'
+      prop = 'lname';
+      txt +='person[' + prop + '] = ' + person[prop] + '<br>'
+      prop = 'age';
+      txt += 'person[' + prop + '] = ' + person[prop] + '<br>'
+      document.getElementById('p10-1').innerHTML = txt;
+
+      /********** The For/In Loop ********/
+      /*
+        for(var member in object){
+            member.....
+        }
+      */
+      txt = '';
+      for (prop in person) {
+        console.log(prop)
+        txt += 'person[' + prop + '] = ' + person[prop] + '<br>';
+      }
+      document.getElementById('p11').innerHTML = txt;
+
+      /********* The For/Of Loop ************/
+      /*
+        for(var item of Array){
+            item.....
+        }
+      */
+
+      // txt = '';
+      // for(i = 0; i < cars.length; i++){
+      //   var car = cars[i];
+      //   txt += car + '<br>';
+      // }
+
+      txt = '';
+      for (var car of cars) {
+        txt += car + '<br>';
+      }
+      document.getElementById('p12').innerHTML = txt;
+
+      var students = [
+        {
+          firstName: 'Asra',
+          lastName: 'Majd',
+          fullName: function () {
+            return this.firstName + ' ' + this.lastName;
+          },
+        },
+        {
+          firstName: 'Sepideh',
+          lastName: 'Mashayekhi',
+          fullName: function () {
+            return this.firstName + ' ' + this.lastName;
+          },
+        },
+        {
+          firstName: 'Shayan',
+          lastName: 'Vahid',
+          fullName: function () {
+            return this.firstName + ' ' + this.lastName;
+          },
+        },
+        {
+          firstName: 'Mahan',
+          lastName: 'Bakhtiarei',
+          fullName: function () {
+            return this.firstName + ' ' + this.lastName;
+          },
+        },
+        {
+          firstName: 'Yazdan',
+          lastName: 'Balouch',
+          fullName: function () {
+            return this.firstName + ' ' + this.lastName;
+          },
+        }
+      ];
+
+      txt = '';
+      for (var student of students) {
+        txt += student.fullName() + '<br>';
+      }
+      document.getElementById('p13').innerHTML = txt;
+    </script>
+  </body>
+</html>
