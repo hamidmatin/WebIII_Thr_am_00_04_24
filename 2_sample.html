@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      .row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+      }
+      .form-wrapper {
+        width: 600px;
+        border: 1px solid #eeeeee;
+        box-shadow: 0 2px 4px #cccccc;
+        margin: 50px auto;
+        padding: 10px;
+      }
+      .label-wrapper {
+        width: 20%;
+        padding: 10px 0;
+      }
+      .control-wrapper {
+        width: 80%;
+        padding: 10px 0;
+      }
+      input {
+        display: block;
+        width: 100%;
+        padding: 8px;
+        border: 2px solid #555555;
+        border-radius: 5px;
+        outline: none;
+      }
+      input:focus {
+        box-shadow: 0 0 2px 1px #cccccc;
+      }
+      label {
+        display: block;
+        width: 100%;
+        padding: 8px;
+      }
+      .table {
+        width: 600px;
+        margin: auto;
+      }
+      .first-name {
+        width: 40%;
+      }
+      .last-name {
+        width: 50%;
+      }
+      .mark {
+        width: 10%;
+      }
+      .first-name,
+      .last-name,
+      .score {
+        padding: 15px;
+        margin-left: 5px;
+      }
+      .title {
+        text-align: center;
+        background-color: rgb(121, 121, 121);
+        color: white;
+      }
+
+      .error-message {
+        color: red;
+        font-weight: 900;
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-wrapper">
+      <div class="row">
+        <div class="label-wrapper">
+          <label for="fname">First Name</label>
+        </div>
+        <div class="control-wrapper">
+          <input type="text" id="fname" />
+          <span class="error-message"></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="label-wrapper">
+          <label for="lname">Last Name</label>
+        </div>
+        <div class="control-wrapper">
+          <input type="text" id="lname" />
+          <span class="error-message"></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="label-wrapper">
+          <label for="score">Score</label>
+        </div>
+        <div class="control-wrapper">
+          <input type="text" id="score" placeholder="enter a number between 0 and 100" />
+          <span class="error-message"></span>
+        </div>
+      </div>
+      <div class="row">
+        <button id="add">Add</button>
+      </div>
+    </div>
+    <div class="table">
+      <div class="row">
+        <div class="first-name title">First Name</div>
+        <div class="last-name title">Last Name</div>
+        <div class="score title">Score</div>
+      </div>
+      <div id="table-body"></div>
+    </div>
+
+    <script>
+      /********* global variables *************/
+      let firstNameElement = document.getElementById('fname');
+      let lastNameElement = document.getElementById('lname');
+      let scoreElement = document.getElementById('score');
+
+      /*************/
+      let Student = function (fistName, lastName, score) {
+        this.firstName = fistName;
+        this.lastName = lastName;
+        this.score = score;
+      };
+
+      /*******
+       *
+       */
+      document.getElementById('add').onclick = function () {
+        /********* Validation ***********/
+        /* check for validation form */
+        if (!isValid()) {
+          /* exit function be..*/
+          return;
+        }
+
+        let student = new Student(
+          firstNameElement.value,
+          lastNameElement.value,
+          scoreElement.value
+        );
+
+        let row = '<div class="row">';
+        row += '<div class="first-name">' + student.firstName + '</div>';
+        row += '<div class="last-name">' + student.lastName + '</div>';
+        row += '<div class="score">' + student.score + '</div>';
+        row += '</div>';
+
+        var tableBody = document.getElementById('table-body');
+
+        tableBody.innerHTML += row;
+
+        firstNameElement.value = '';
+        lastNameElement.value = '';
+        scoreElement.value = '';
+
+        firstNameElement.focus();
+      };
+
+      /*
+       * isValid Function
+       * desc: check validate data entry
+       * param paramName : kkk
+       * return value
+       *    true if form is valid
+       *    false if form is not valid
+       */
+      let isValid = function () {
+        let retValue = true;
+        let errorMessages = document.querySelectorAll('.error-message');
+
+        for (const errorMessage of errorMessages) {
+          errorMessage.innerHTML = '';
+        }
+
+        if (firstNameElement.value === '') {
+          // alert('First Name is required')
+          // document.querySelector('#fname + .error-message').innerHTML = 'First Name is required'
+          
+          /*
+            element.parentElement
+            element.previousElementSibling
+            element.nextElementSibling
+            element.children => list
+            element.childElementCount
+            */
+          firstNameElement.nextElementSibling.innerHTML = 'First Name is required';
+          retValue = false;
+        }
+
+        if (lastNameElement.value === '') {
+          // alert('Last Name is required')
+          lastNameElement.nextElementSibling.innerHTML = 'Last Name is required';
+          retValue = false;
+        }
+
+        if (scoreElement.value === '') {
+          // alert('Score is required')
+          scoreElement.nextElementSibling.innerHTML = 'Score is required';
+          retValue = false;
+        }
+        else if (isNaN(scoreElement.value)) {
+          scoreElement.nextElementSibling.innerHTML = 'Score must be a number';
+          retValue = false;
+        }
+
+        return retValue;
+      };
+
+      /******* add keyup event for inputs *******/
+      let inputElements = document.getElementsByTagName('input');
+      for (var inputElement of inputElements) {
+        inputElement.onkeyup = function () {
+          if (this.value.trim() !== '') {
+            this.nextElementSibling.innerHTML = '';
+          }
+        };
+      }
+    </script>
+  </body>
+</html>
