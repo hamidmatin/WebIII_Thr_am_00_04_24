@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="calcSum()">Sum</button>
+    <button onclick="showCalc(sum)">Sum</button>
+    <button onclick="showCalc(mul)">Mul</button>
+    <button onclick="showCalc(compare)">Compare</button>
+    <p id="p1" style="white-space: pre;"></p>
+    <p id="p1-1" style="white-space: pre;"></p>
+    <p id="p2"></p>
+    <p id="p3"></p>
+    <p id="p4" style="white-space: pre"></p>
+
+    <script>
+      // var sample = 20;
+
+      // var sample = function(){
+      //   return Math.floor(Math.random() * 50);
+      // };
+
+      function sample(){
+        return Math.floor(Math.random() * 50);
+      }
+
+      var newSample = sample
+
+      document.getElementById('p1').innerHTML = sample;
+      document.getElementById('p1-1').innerHTML = newSample();
+
+      var calcSum = function () {
+        var x = Math.floor(Math.random() * 50);
+        var y = Math.floor(Math.random() * 50);
+        var result;
+
+        result = x + y;
+        // result = sum(x, y)
+        // result = mul(x, y)
+        // result = compare(x, y)
+        document.getElementById('p2').innerHTML = `x = ${x}, y = ${y}, Result = ${result}`;
+      };
+
+      /*************************************/
+      var showCalc = function (calculate) {
+        var x = Math.floor(Math.random() * 50);
+        var y = Math.floor(Math.random() * 50);
+        var result;
+
+        document.getElementById('p4').innerHTML = calculate;
+        result = calculate(x, y);
+        document.getElementById('p3').innerHTML = `x = ${x}, y = ${y}, Result = ${result}`;
+      };
+
+      // var sum = 20;
+
+      let sum = function (a, b) {
+        return a + b;
+      };
+
+      var mul = function (x, y) {
+        return x * y;
+      };
+
+      var compare = function (x, y) {
+        if (x > y)
+          // return 1;
+          return 'x > y';
+        else if (x < y)
+          // return -1;
+          return 'x < y';
+        // return 0;
+        else return 'x = y';
+      };
+    </script>
+  </body>
+</html>
