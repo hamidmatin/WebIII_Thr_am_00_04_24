@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="p1"></p>
+    <p id="p2"></p>
+    <p id="p3"></p>
+    <p id="p4"></p>
+    <p id="p5"></p>
+    <p id="p6"></p>
+    <p id="p7"></p>
+    <p id="p8"></p>
+    <p id="p9"></p>
+    <p id="p10"></p>
+    <p id="p11"></p>
+
+    <script>
+      var fruits = ['Banana', 'Orange', 'Apple', 'Mango'];
+      document.getElementById('p1').innerHTML = `fruits = ${fruits}`;
+      document.getElementById('p2').innerHTML = `fruits = ${fruits.toString()}`;
+      document.getElementById('p3').innerHTML = `fruits = ${fruits.join(' - ')}`; // toString() => join(',')
+
+      var f = fruits[fruits.length - 1];
+      document.getElementById('p4').innerHTML = `last fruit = ${f} , fruits = ${fruits}`;
+
+      f = fruits.pop();
+      document.getElementById('p5').innerHTML = `last fruit = ${f} , fruits = ${fruits}`;
+
+      f = 'kiwi';
+      fruits.push(f);
+      document.getElementById('p6').innerHTML = `new fruit = ${f} , fruits = ${fruits}`;
+
+      f = fruits.shift();
+      document.getElementById('p7').innerHTML =  `first fruit = ${f} , fruits = ${fruits}`;
+
+      f = 'Lemon';
+      fruits.unshift(f);
+      document.getElementById('p8').innerHTML =  `new fruit = ${f} , fruits = ${fruits}`;
+
+      // array.splice(startIndex, deleteCount, [insertItem, insertItem, ....])
+
+      // remove item
+      var deleted = fruits.splice(1, 2);
+      document.getElementById('p9').innerHTML = `deleted fruits = (${deleted}), fruits = ${fruits}`
+
+      // insert item
+      fruits.splice(1, 0, 'aaaaaaaa', 'bbbbbbb');
+      document.getElementById('p10').innerHTML = `fruits = ${fruits}`
+
+      // delete & insert item
+      deleted = fruits.splice(1, 2, 'ccccc', 'dddddd', 'eeeee');
+      document.getElementById('p11').innerHTML = `deleted fruits = (${deleted}), fruits = ${fruits}`
+    </script>
+  </body>
+</html>
