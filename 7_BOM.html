@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn1">Back</button>
+    <button id="btn2">Forward</button>
+    <button id="btn3">Reload</button>
+    <button id="btn4">MFT Web Site</button>
+    <button id="btn5">New Tab</button>
+    <button id="btn6">New Window</button>
+    <script>
+      console.log(window);
+
+      // window.alert('Message')
+      // alert('Message')
+
+      console.log(history);
+      console.log(location);
+
+      document.getElementById('btn1').onclick = function () {
+        history.back();
+      };
+      document.getElementById('btn2').onclick = function () {
+        history.forward();
+      };
+      document.getElementById('btn3').onclick = function () {
+        location.reload();
+      };
+      document.getElementById('btn4').onclick = function () {
+        // location.pathname = '/3_Value_and_Ref_type.html';
+        location.href = 'https://www.mftplus.com/';
+      };
+      document.getElementById('btn5').onclick = function () {
+        // window.open('https://www.mftplus.com/')
+        open('https://www.mftplus.com/');
+      };
+      document.getElementById('btn6').onclick = function () {
+        var myWindow = window.open(
+          'https://www.mftplus.com/',
+          '',
+          'width=400,height=400,left=500,top=500,titlebar=0'
+        );
+        var screenWidth = screen.width;
+        var screenHeight = screen.height;
+        //    myWindow.moveTo(screenWidth - 400, screenHeight - 400)
+      };
+      var isShowAd = false;
+      document.onclick = function () {
+        if (!isShowAd) {
+          //....
+          window.open(
+            'https://www.mftplus.com/',
+            '',
+            'width=100,height=100,left=900,top=500,titlebar=0'
+          );
+          isShowAd = true;
+        }
+        // alert('sd')
+      };
+    </script>
+  </body>
+</html>
