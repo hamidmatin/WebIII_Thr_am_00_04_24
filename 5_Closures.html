@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #p1 {
+        font-size: 20px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="btn1">Increment</button>
+    <button id="btn2">Click Me</button>
+    <button id="btn3">Nested Function</button>
+    <button id="btn3-1">Test Clouser</button>
+    <button id="btn4">Increment by Clouser</button>
+    <hr />
+    <button id="btn5">Increment</button>
+    <button id="btn6">Decrement</button>
+    <button id="btn7">Reset</button>
+    <hr />
+    <p id="p1">Counter : 0</p>
+
+    <script>
+      let counter = 0;
+
+      const addCounter = function () {
+        counter++;
+        return counter;
+      };
+
+      document.getElementById('btn1').onclick = function () {
+        // let c = addCounter();
+        document.getElementById('p1').innerHTML = `Counter : ${addCounter()}`;
+      };
+
+      document.getElementById('btn2').onclick = function () {
+        // counter = 200;
+        counter = 'sdsd';
+      };
+
+      const nestedFunction = function () {
+        let c = 0;
+        console.log(c);
+
+        /* Nested Function */
+        let add = function () {
+          c++;
+        };
+
+        add();
+        add();
+        add();
+
+        console.log(c);
+      };
+
+      document.getElementById('btn3').onclick = function () {
+        nestedFunction();
+      };
+
+			const testClosure = function(){
+				let c = 0;
+        
+        /* Nested Function */
+        let add = function () {
+          c++;
+					return c;
+        };
+
+        add();
+        add();
+        add();
+
+        return add;
+			}
+      document.getElementById('btn3-1').onclick = function () {
+        let test = testClosure();
+				console.log(test)
+				console.log(test())
+      };
+
+      const counterInit = function (initCount) {
+        let c = initCount;
+
+        let increment = function () {
+          c++;
+          return c;
+        };
+
+        return increment;
+      };
+
+      let myCounter = counterInit(-10);
+      console.log(myCounter);
+
+      document.getElementById('btn4').onclick = function () {
+        let c = myCounter();
+        document.getElementById('p1').innerHTML = `Counter : ${c}`;
+      };
+
+			/*****************************************/
+      const counterFullInit = function (initCount) {
+        let c = initCount;
+
+        let increment = function () {
+          c++;
+          return c;
+        };
+        let decrement = function () {
+          c--;
+          return c;
+        };
+        let resetCounter = function (initCount = 0) {
+          c = initCount;
+          return c;
+        };
+
+        let lsit = { increment, decrement, resetCounter };
+        return lsit;
+      };
+
+      let myFullCounter = counterFullInit(10);
+
+      console.log(myFullCounter);
+
+      document.getElementById('btn5').onclick = function () {
+        let c = myFullCounter.increment();
+        document.getElementById('p1').innerHTML = `Counter : ${c}`;
+      };
+
+      document.getElementById('btn6').onclick = function () {
+        let c = myFullCounter.decrement();
+        document.getElementById('p1').innerHTML = `Counter : ${c}`;
+      };
+      document.getElementById('btn7').onclick = function () {
+        let c = myFullCounter.resetCounter(30);
+        document.getElementById('p1').innerHTML = `Counter : ${c}`;
+      };
+    </script>
+  </body>
+</html>

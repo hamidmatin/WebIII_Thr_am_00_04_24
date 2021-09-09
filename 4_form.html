@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      .row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+      }
+      .form-wrapper {
+        width: 600px;
+        border: 1px solid #eeeeee;
+        box-shadow: 0 2px 4px #cccccc;
+        margin: 50px auto;
+        padding: 10px;
+      }
+      .label-wrapper {
+        width: 20%;
+        padding: 10px 0;
+      }
+      .control-wrapper {
+        width: 80%;
+        padding: 10px 0;
+      }
+      input {
+        display: block;
+        width: 100%;
+        padding: 8px;
+        border: 2px solid #555555;
+        border-radius: 5px;
+        outline: none;
+      }
+      input:focus {
+        box-shadow: 0 0 2px 1px #cccccc;
+      }
+      label {
+        display: block;
+        width: 100%;
+        padding: 8px;
+      }
+      .table {
+        width: 600px;
+        margin: auto;
+      }
+      .first-name {
+        width: 40%;
+      }
+      .last-name {
+        width: 50%;
+      }
+      .mark {
+        width: 10%;
+      }
+      .first-name,
+      .last-name,
+      .score {
+        padding: 15px;
+        margin-left: 5px;
+      }
+      .title {
+        text-align: center;
+        background-color: rgb(121, 121, 121);
+        color: white;
+      }
+      .invalid {
+        color: red;
+      }
+      .show {
+        display: block !important;
+      }
+    </style>
+  </head>
+  <body>
+    <form class="form-wrapper" novalidate name="student-form">
+      <div class="row">
+        <div class="label-wrapper">
+          <label for="fname">First Name</label>
+        </div>
+        <div class="control-wrapper">
+          <input type="text" name="fname" required data-error-message="Firstname is required" />
+          <span class="invalid"></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="label-wrapper">
+          <label for="lname">Last Name</label>
+        </div>
+        <div class="control-wrapper">
+          <input type="text" name="lname" />
+          <span class="invalid"></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="label-wrapper">
+          <label for="score">Score</label>
+        </div>
+        <div class="control-wrapper">
+          <input
+            type="number"
+            name="score"
+            min="0"
+            max="100"
+            data-error-message="score must be greater than 0 less than 100"
+          />
+          <span class="invalid"></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="label-wrapper">
+          <label for="score">E-Mail</label>
+        </div>
+        <div class="control-wrapper">
+          <input type="email" name="email" data-error-message="E-Mail Format is not correct" />
+          <span class="invalid"></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="label-wrapper">
+          <label for="score">Password</label>
+        </div>
+        <div class="control-wrapper">
+          <div style="position: relative">
+            <div id="show-pass" style="position: absolute; right: 3px; top: 3px; bottom: 3px; background-color: #cccccc;">V</div>
+            <input
+              type="password"
+              name="password"
+              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+              data-error-message="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
+            />
+            <span class="invalid"></span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="label-wrapper">
+          <label for="score">Score</label>
+        </div>
+        <div class="control-wrapper">
+          <input type="checkbox" name="chk" checked />
+          <span class="invalid"></span>
+        </div>
+      </div>
+      <div class="row">
+        <button type="submit">Add</button>
+      </div>
+    </form>
+
+    <form action="2_auto_variable.html" name="search-form">
+      <input type="search" />
+    </form>
+    <script>
+      document.getElementById('show-pass').onmousedown = function(){
+        this.nextElementSibling.type='text'
+      }
+      document.getElementById('show-pass').onmouseup = function(){
+        this.nextElementSibling.type='password'
+      }
+      document.getElementById('show-pass').onmouseout = function(){
+        this.nextElementSibling.type='password'
+      }
+      document.querySelector('.form-wrapper').onsubmit = function (e) {
+        // e.preventDefault()
+        // console.log(document.forms);
+        // console.log(document.forms[0]);
+        // console.log(document.forms['student-form']);
+        // console.log(document.forms['search-form']);
+        // console.log(document.forms['student-form'][0]);
+        // console.log(document.forms['student-form']['fname']);
+        // console.log(document.forms['student-form']['lname']);
+        // console.log(document.forms['student-form']['chk']);
+        // console.log(document.forms['student-form']['chk'].checked);
+
+        return isValidate();
+      };
+
+      const isValidate = function () {
+        const form = document.forms['student-form'];
+
+        for (const input of form) {
+          console.log(input);
+          console.log(input.dataset);
+          if (!input.checkValidity()) {
+            // input.nextElementSibling.innerHTML = input.validationMessage;
+            input.nextElementSibling.innerHTML = input.dataset.errorMessage;
+          }
+        }
+        return false;
+      };
+    </script>
+  </body>
+</html>
