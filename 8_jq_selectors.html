@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      p {
+        padding: 16px;
+        background-color: #f1f1f1;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="important">jQuery Selectors</h1>
+
+    <p id="p1">
+      jQuery selectors are one of the most important parts of the jQuery
+      library.
+    </p>
+    <p class="important">
+      jQuery selectors allow you to select and manipulate HTML element(s).
+    </p>
+    <p>
+      jQuery selectors are used to "find" (or select) HTML elements based on
+      their name, id, classes, types, attributes, values of attributes and much
+      more. It's based on the existing
+      <span>CSS Selectors</span>, and in addition, it has some own custom
+      selectors.
+    </p>
+    <p></p>
+    <ul>
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+      <li>Item 4</li>
+      <li>Item 5</li>
+      <li>Item 6</li>
+      <li>Item 7</li>
+    </ul>
+    <ul>
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+      <li>Item 4</li>
+      <li>Item 5</li>
+      <li>Item 6</li>
+      <li>Item 7</li>
+    </ul>
+
+
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script>
+      $(function () {
+        $('#p1').css('color', 'red');
+
+        console.log($('#p1'));
+        console.log($('.important'));
+
+        // const imps = document.getElementsByClassName('important')
+        // console.log(imps)
+        // for (const imp of imps) {
+        //   imp.style.color = 'blue'
+        // }
+
+        $('.important').css('color', 'blue');
+
+        $('p').css('font-size', '18px');
+        $('p > span').css('text-decoration', 'underline');
+
+        $('p:has(span)').css('color', 'orange'); //jQuery selector
+
+        console.log($('li'));
+        console.log($('ul li'));
+
+        //  $('li:first-child').css('color', 'red');
+        $('li:first').css('color', 'red');
+
+        //  $('li:last-child').css('color', 'blue');
+        $('li:last').css('color', 'blue');
+
+        // $('li:nth-child(even)').css('background-color', 'lightgreen');
+        // $('li:nth-child(odd)').css('background-color', 'lightgreen');
+        // $('li:odd').css('background-color', 'lightgreen');
+        $('li:even').css('background-color', 'lightgreen');
+
+        // $('li:nth-child(3)').css('text-decoration', 'underline');
+        // $('li:nth-last-child(3)').css('text-decoration', 'underline');
+
+        $('li:eq(-9)').css('text-decoration', 'underline');
+        $('li:eq(9)').css('text-decoration', 'underline');
+
+        $('li:gt(9)').css('font-size', '22px');
+        $('li:lt(9)').css('font-size', '12px');
+
+        $('p:parent').css('border', '1px solid')
+        $('p:empty').css('background', 'yellow')
+      });
+    </script>
+  </body>
+</html>
