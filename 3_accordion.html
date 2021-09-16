@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      .accordion {
+        width: 250px;
+        border: 1px solid #eeeeee;
+        box-shadow: 0 2px 4px #cccccc;
+        margin: 50px;
+      }
+      .accordion .title {
+        background-color: #bebebe;
+        margin: 0;
+        padding: 20px;
+        text-align: center;
+        cursor: pointer;
+        border-bottom: 2px ridge darkgray;
+      }
+      .accordion .content {
+        padding: 8px;
+      }
+
+      .accordion img {
+        display: block;
+        width: 100%;
+      }
+      .accordion label {
+        display: block;
+        margin-bottom: 5px;
+        padding: 10px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="collapse-all">Collapse All</button>
+    <button id="expand-all">Expand All</button>
+    <div class="accordion">
+      <h3 id="title1" class="title">Item 1</h3>
+      <div id="content1" class="content">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis sint
+        vel ea incidunt, corrupti, excepturi dolores pariatur, aut possimus modi
+        voluptatibus dignissimos accusantium assumenda? Autem quidem et tenetur
+        laudantium illum?
+      </div>
+
+      <h3 id="title2" class="title">Item 2</h3>
+      <div id="content2" class="content">
+        <img src="images/pic_bulbon.gif" alt="" />
+      </div>
+      <h3 id="title3" class="title">Item 3</h3>
+      <div id="content3" class="content">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis sint
+        vel ea incidunt, corrupti, excepturi dolores pariatur, aut possimus modi
+        voluptatibus dignissimos accusantium assumenda? Autem quidem et tenetur
+        laudantium illum?
+      </div>
+
+      <h3 id="title4" class="title">Item 4</h3>
+      <div id="content4" class="content">
+        <label>Check 1 <input type="checkbox" /></label>
+        <label>Check 2 <input type="checkbox" /></label>
+        <label>Check 3 <input type="checkbox" /></label>
+      </div>
+
+      <h3 id="title5" class="title">Item 5</h3>
+      <div id="content5" class="content">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis sint
+        vel ea incidunt, corrupti, excepturi dolores pariatur, aut possimus modi
+        voluptatibus dignissimos accusantium assumenda? Autem quidem et tenetur
+        laudantium illum?
+      </div>
+    </div>
+
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script>
+      $(function () {
+        let duration = 300
+        $('#title1').click(function(){
+          $('#content1').slideToggle(duration)
+        })
+        $('#title2').click(function(){
+          $('#content2').slideToggle(duration)
+        })
+        $('#title3').click(function(){
+          $('#content3').slideToggle(duration)
+        })
+        $('#title4').click(function(){
+          $('#content4').slideToggle(duration)
+        })
+        $('#title5').click(function(){
+          $('#content5').slideToggle(duration)
+        })
+
+        $('#collapse-all').click(function(){
+          $('.content').slideUp(duration)
+        })
+
+        $('#expand-all').click(function(){
+          $('.content').slideDown(duration)
+        })
+      });
+    </script>
+  </body>
+</html>
