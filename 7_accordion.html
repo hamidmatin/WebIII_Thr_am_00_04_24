@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      .accordion {
+        width: 250px;
+        border: 1px solid #eeeeee;
+        box-shadow: 0 2px 4px #cccccc;
+        margin: 50px;
+      }
+      .accordion .title {
+        background-color: #bebebe;
+        margin: 0;
+        padding: 20px;
+        cursor: pointer;
+        border-bottom: 2px ridge darkgray;
+        position: relative;
+        transition: all 300ms;
+      }
+      .accordion .title::after {
+        content: '';
+        display: block;
+        border-top: 6px solid;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        position: absolute;
+        right: 10px;
+        top: calc(50% - 3px);
+        transition: inherit;
+      }
+      .accordion .title.active {
+        color: #bebebe;
+        background-color: #555;
+      }
+      .accordion .title.active::after {
+        transform: rotate(180deg);
+      }
+
+      .accordion .content {
+        padding: 8px;
+      }
+
+      .accordion img {
+        display: block;
+        width: 100%;
+      }
+      .accordion label {
+        display: block;
+        margin-bottom: 5px;
+        padding: 10px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="accordion">
+      <h3 id="title1" class="title active">Item 1</h3>
+      <div id="content1" class="content">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis sint vel ea incidunt,
+        corrupti, excepturi dolores pariatur, aut possimus modi voluptatibus dignissimos accusantium
+        assumenda? Autem quidem et tenetur laudantium illum?
+      </div>
+
+      <h3 id="title2" class="title">Item 2</h3>
+      <div id="content2" class="content">
+        <img src="images/pic_bulbon.gif" alt="" />
+      </div>
+      <h3 id="title3" class="title">Item 3</h3>
+      <div id="content3" class="content">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis sint vel ea incidunt,
+        corrupti, excepturi dolores pariatur, aut possimus modi voluptatibus dignissimos accusantium
+        assumenda? Autem quidem et tenetur laudantium illum?
+      </div>
+
+      <h3 id="title4" class="title">Item 4</h3>
+      <div id="content4" class="content">
+        <label>Check 1 <input type="checkbox" /></label>
+        <label>Check 2 <input type="checkbox" /></label>
+        <label>Check 3 <input type="checkbox" /></label>
+      </div>
+
+      <h3 id="title5" class="title">Item 5</h3>
+      <div id="content5" class="content">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis sint vel ea incidunt,
+        corrupti, excepturi dolores pariatur, aut possimus modi voluptatibus dignissimos accusantium
+        assumenda? Autem quidem et tenetur laudantium illum?
+      </div>
+    </div>
+
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script>
+      $(function () {
+        const DURATION = 300;
+        const accordion = $('.accordion');
+        const titles = accordion.children('.title');
+        const contents = accordion.children('.content');
+
+        contents.hide();
+        titles.filter('.active').next().show();
+
+        titles.click(function () {
+          const currentTitle = $(this);
+          const nextContent = currentTitle.next();
+
+          if (nextContent.is(':hidden')) {
+            titles.removeClass('active');
+            currentTitle.addClass('active');
+
+            contents.slideUp(DURATION);
+            nextContent.slideDown(DURATION);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

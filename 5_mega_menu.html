@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{box-sizing: border-box;}
+    body{margin: 0;}
+
+    .nav{
+      
+      background-color: #f1f1f1;
+      padding: 0 16px;
+    }
+    .nav > .mega-menu{
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+    }
+    .nav > .mega-menu a{
+      display: block;
+      text-decoration: none;
+      color: black;
+      background-color: #f1f1f1;
+      padding: 16px 32px;
+    }
+    .nav > .mega-menu li:hover > a{
+      background-color: rgb(34, 160, 34);
+      color: white;
+    }
+    .nav .mega-menu .mega-menu-pane{
+      position: absolute;
+      left: 0;
+      right: 0;
+      padding: 20px;
+      background-color: #555;
+      color: white;
+    }
+    .mega-menu .close{
+      float: right;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="nav">
+    <ul class="mega-menu">
+      <li>
+        <a href="#" class="mega-menu-link">Menu 1</a>
+        <div class="mega-menu-pane" style="display: none;">
+          <button class="close">&times</button>
+          <h3>Mega menu 1</h3>
+          <ul>
+            <li>item 1</li>
+            <li>item 2</li>
+            <li>item 3</li>
+            <li>item 4</li>
+            <li>item 5</li>
+            <li>item 6</li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <a href="#" class="mega-menu-link">Menu 2</a>
+        <div class="mega-menu-pane" style="display: none;">
+          <button class="close">&times</button>
+          <h3>Mega menu 2</h3>
+          <ul>
+            <li>item 1</li>
+            <li>item 2</li>
+            <li>item 3</li>
+            <li>item 4</li>
+            <li>item 5</li>
+            <li>item 6</li>
+          </ul>
+          <p>smdskdfjs</p>
+          <ul>
+            <li>item 1</li>
+            <li>item 2</li>
+            <li>item 3</li>
+            <li>item 4</li>
+            <li>item 5</li>
+            <li>item 6</li>
+          </ul>
+        </div>
+      </li>
+      <li><a href="#" class="mega-menu-link">Menu 3</a></li>
+    </ul>
+  </div>
+  <script src="node_modules/jquery/dist/jquery.min.js"></script>
+  <script>
+    $(function(){
+      const megaMenu = $('.mega-menu')
+      const megaMenuLinks = megaMenu.find('.mega-menu-link')
+      const megaMenuPanes = megaMenu.find('.mega-menu-pane')
+      const closeButton = megaMenu.find('.close')
+
+      const DURATION = 300
+      megaMenuLinks.click(function(){
+        const current = $(this)
+        const nextMegaMenuPane = current.next()
+
+        megaMenuPanes.not(nextMegaMenuPane).slideUp(DURATION)
+        nextMegaMenuPane.slideToggle(DURATION)
+      })
+      
+      closeButton.click(function(){
+        $(this).parent().slideUp(DURATION)
+      })
+    })
+  </script>
+</body>
+</html>
