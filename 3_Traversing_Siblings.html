@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .siblings,
+      .siblings * {
+        display: block;
+        border: 2px solid;
+        color: lightgrey;
+        padding: 5px;
+        margin: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="siblings">
+      div (.siblings)
+      <span>span</span>
+      <h1>h1</h1>
+      <p>p</p>
+      <span>span</span>
+      <p>p</p>
+      <h2>h2</h2>
+      <h3>h3</h3>
+      <p>p</p>
+      <h1>h1</h1>
+      <p>p</p>
+      <span>span</span>
+      <p>p</p>
+    </div>
+    <button id="btn1">Siblings</button>
+    <button id="btn2">Prev and Next</button>
+    <button id="btn3">PrevAll and NextAll</button>
+    <button id="btn4">PrevUntil and NextUntil</button>
+
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script>
+      $(function () {
+        const h2 = $('h2');
+        $('#btn1').click(function () {
+          console.log(h2.siblings());
+
+          h2.siblings().css('box-shadow', '0 2px 4px 2px');
+
+          h2.siblings('p').css('color', 'red');
+          h2.siblings('span').css('color', 'green');
+          h2.siblings('h1').slideToggle(3000);
+        });
+
+        $('#btn2').click(function () {
+          h2.prev().css('color', 'green');
+          h2.prev('p').css('box-shadow', '0 2px 4px 2px');
+
+          h2.next().css('color', 'red');
+          h2.next('p').css('box-shadow', '0 2px 4px 2px');
+        });
+
+        $('#btn3').click(function () {
+          h2.prevAll().css('color', 'green');
+          h2.prevAll('span').css('box-shadow', '0 2px 4px 2px');
+
+          h2.nextAll().css('color', 'red');
+          h2.nextAll('p').css('box-shadow', '0 2px 4px 2px');
+        });
+
+        $('#btn4').click(function () {
+          h2.prevUntil('h1').css('color', 'green');
+          h2.nextUntil('h1').css('color', 'red');
+        });
+      });
+    </script>
+  </body>
+</html>
