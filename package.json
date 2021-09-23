@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/hamidmatin/WebIII_Thr_am_00_04_24#readme",
   "dependencies": {
-    "jquery": "^3.6.0"
+    "jquery": "^3.6.0",
+    "jquery-color": "^2.2.0"
   }
 }
