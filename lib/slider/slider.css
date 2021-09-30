@@ -1,0 +1,31 @@
+.slider{
+  width: 65%;
+  /* width: 500px; */
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  overflow: hidden;
+  /* border: 4px dotted; */
+}
+.slider .item{
+  flex-shrink: 0;
+}
+
+.slider .slider-roller{
+  display: flex;
+  transition: all .6s;
+} 
+.slider .btn-prev,
+.slider .btn-next{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.slider .btn-prev{
+  right: 20px;
+}
+.slider .btn-next{
+  left: 20px;
+}

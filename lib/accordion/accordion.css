@@ -1,0 +1,48 @@
+.accordion {
+  width: 250px;
+  border: 1px solid #eeeeee;
+  box-shadow: 0 2px 4px #cccccc;
+  margin: 50px;
+}
+.accordion .title {
+  background-color: #bebebe;
+  margin: 0;
+  padding: 20px;
+  cursor: pointer;
+  border-bottom: 2px ridge darkgray;
+  position: relative;
+  transition: all 300ms;
+}
+.accordion .title::after {
+  content: '';
+  display: block;
+  border-top: 6px solid;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  position: absolute;
+  right: 10px;
+  top: calc(50% - 3px);
+  transition: inherit;
+}
+.accordion .title.active {
+  color: #bebebe;
+  background-color: #555;
+}
+.accordion .title.active::after {
+  transform: rotate(180deg);
+}
+
+.accordion .content {
+  padding: 8px;
+}
+
+.accordion img {
+  display: block;
+  width: 100%;
+}
+.accordion label {
+  display: block;
+  margin-bottom: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
