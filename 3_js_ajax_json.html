@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="#">Menu 1</a></li>
+        <li><a href="#" class="active">Menu 2</a></li>
+        <li><a href="#">Menu 3</a></li>
+        <li><a href="#">Menu 4</a></li>
+        <li><a href="#">Menu 5</a></li>
+      </ul>
+    </nav>
+    <div class="row">
+      <aside>
+        <ul>
+          <li><a id="ajax-1" href="#">AJAX Intro</a></li>
+          <li><a id="ajax-2" href="#">AJAX XMLHttp</a></li>
+          <li><a id="ajax-3" href="#" class="active">Breakfast Menu</a></li>
+          <li><a id="ajax-4" href="#">Get Data With JSON</a></li>
+          <li><a id="ajax-5" href="#">Get Data From API</a></li>
+        </ul>
+      </aside>
+      <main></main>
+    </div>
+
+    <script>
+      /**********
+        XMLHttpRequest => ajax class
+        obj = new XMLHttpRequest()
+        obj.open('method', 'url', async)
+          method =>
+            'GET'       => Get data from server
+            'POST'      => new data send to server
+            'PUT',      => update a data at server
+            'PATCH'     => update a filed
+            'DELETE'    => delete a data
+       
+        obj.send([data])
+        obj.readyState
+          Holds the status of the XMLHttpRequest.
+          0: request not initialized
+          1: server connection established
+          2: request received
+          3: processing request
+          4: request finished and response is ready
+
+        obj.onreadystatechange (event)	Defines a function to be called when the readyState property changes
+        obj.status
+          200: "OK"
+          403: "Forbidden"
+          404: "Page not found"
+          ... for more info https://www.w3schools.com/tags/ref_httpmessages.asp
+
+        obj.responseText
+        obj.responseXML
+
+      */
+
+      const removeActiveClass = function (elements, activeClassName) {
+        // for (let i = 0; i < elements.length; i++) {
+        //   elements[i].classList.remove('active');
+        // }
+        for (const element of elements) {
+          element.classList.remove(activeClassName);
+        }
+      };
+
+      const changeActiveAsideLink = function (currentLink, activeClassName = 'active') {
+        removeActiveClass(document.querySelectorAll('aside ul a'), activeClassName);
+        currentLink.classList.add(activeClassName);
+      };
+
+      document.getElementById('ajax-1').onclick = function (e) {
+        e.preventDefault();
+
+        changeActiveAsideLink(this);
+        /**************/
+
+        const xhttp = new XMLHttpRequest();
+
+        console.log(xhttp.readyState);
+
+        xhttp.onreadystatechange = function () {
+          console.log(this.readyState);
+
+          if (this.readyState === 4 && this.status === 200) {
+            console.log(this.responseText);
+            document.querySelector('main').innerHTML = this.responseText;
+          }
+        };
+
+        xhttp.open('GET', '/partial_pages/js_ajax_intro.txt', true);
+        xhttp.send();
+      };
+      document.getElementById('ajax-2').onclick = function (e) {
+        e.preventDefault();
+
+        changeActiveAsideLink(this);
+
+        /**************/
+
+        const xhttp = new XMLHttpRequest();
+        xhttp.open('GET', '/partial_pages/js_ajax_http_send.txt', true);
+        xhttp.send();
+        xhttp.onreadystatechange = function () {
+          if (this.readyState === 4) {
+            console.log(this.responseText);
+            document.querySelector('main').innerHTML = this.responseText;
+          }
+        };
+      };
+      document.getElementById('ajax-3').onclick = function (e) {
+        e.preventDefault();
+
+        changeActiveAsideLink(this);
+
+        /********************/
+        const xhttp = new XMLHttpRequest();
+        xhttp.open('GET', '/data/breakfast_menu.xml', true);
+        xhttp.send();
+        xhttp.onreadystatechange = function () {
+          if (this.readyState === 4) {
+            console.log(this.responseText);
+            console.log(this.responseXML);
+
+            let foodList = '<ul>';
+            const foods = this.responseXML.querySelectorAll('food');
+            for (const food of foods) {
+              // console.log(food.querySelector('name').innerHTML);
+              foodList += `<li>${food.querySelector('name').innerHTML}</li>
+                           <ul>
+                              <li>price = ${food.querySelector('price').innerHTML}</li>
+                              <li>description = ${food.querySelector('description').innerHTML}</li>
+                              <li>calories = ${food.querySelector('calories').innerHTML}</li>
+                           </ul>`
+            }
+
+            foodList += '</ul>';
+            console.log(foodList)
+            document.querySelector('main').innerHTML = foodList;
+          }
+        };
+      };
+
+      
+      document.getElementById('ajax-4').onclick = function (e) {
+        e.preventDefault();
+
+        changeActiveAsideLink(this);
+
+        /*****************/
+        const xhttp = new XMLHttpRequest();
+        xhttp.open('GET', '/data/breakfast_menu.json', true);
+        xhttp.send();
+
+        xhttp.onreadystatechange = function () {
+          if (this.readyState === 4 && this.status === 200) {
+            /****** Convert to array of object ***********/
+            console.log(this.responseText)
+            const foodList = JSON.parse(this.responseText)
+            console.table(foodList)
+            /* Sorting Foods */
+            foodList.sort(function (f1, f2) {
+              // return f2.calories - f1.calories;
+              // return f2.price - f1.price;
+              // return f1.price - f2.price;
+              
+              if(f1.name > f2.name) return 1
+              else if (f1.name < f2.name) return -1
+              else return 0
+            });
+
+            let foodListElement = '<ul>';
+            for (const food of foodList) {
+              foodListElement += `<li>${food.name}</li>
+                                    <ul>
+                                      <li>price = ${food.price}</li>
+                                      <li>description = ${food.description}</li>
+                                      <li>calories = ${food.calories}</li>
+                                    </ul>`;
+            }
+
+            foodListElement += '</ul>';
+
+            document.querySelector('main').innerHTML = foodListElement;
+          }
+        };
+      };
+
+      document.getElementById('ajax-5').onclick = function (e) {
+        e.preventDefault();
+
+        changeActiveAsideLink(this);
+
+        
+        const xhttp = new XMLHttpRequest();
+          xhttp.open('GET', 'https://jsonplaceholder.typicode.com/users', true);
+          xhttp.send();
+          xhttp.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+              console.log(this.responseText);
+              console.table(JSON.parse(this.responseText))
+            }
+          }
+
+      }
+    </script>
+  </body>
+</html>
