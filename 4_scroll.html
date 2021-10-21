@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+      nav {
+        display: flex;
+        background-color: transparent;
+        position: fixed;
+        z-index: 1000;
+        top: 0;
+        left: 0;
+        width: 100%;
+        transition: all 0.3s;
+      }
+      nav a {
+        text-decoration: none;
+        color: white;
+        padding: 10px 20px;
+      }
+      nav a:hover {
+        background-color: hsl(16, 100%, 30%);
+      }
+      [id*='section'] {
+        height: 100vh;
+        overflow: hidden;
+      }
+      #section1 {
+        background-color: cornflowerblue;
+      }
+      #section2 {
+        background-color: darkmagenta;
+      }
+      #section3 {
+        background-color: darkorange;
+      }
+      #section4 {
+        background-color: darksalmon;
+      }
+
+      .go-top {
+        position: fixed;
+        bottom: 5px;
+        right: 5px;
+        width: 40px;
+        line-height: 40px;
+        text-align: center;
+        text-decoration: none;
+        background-color: crimson;
+        color: white;
+        border-radius: 4px;
+        z-index: 1000;
+        display: none;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        top: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="#section1">Section 1</a>
+      <a href="#section2">Section 2</a>
+      <a href="#section3">Section 3</a>
+      <a href="#section4">Section 4</a>
+    </nav>
+    <div id="section1">
+      <img id="img1" src="images/Slide1.jpg" alt="" />
+    </div>
+    <div id="section2"></div>
+    <div id="section3">
+      <img id="img2" src="images/Slide2.jpg" alt="" />
+    </div>
+    <div id="section4"></div>
+
+    <a href="#" class="go-top">TOP</a>
+    <script>
+      let oldScTop = 0;
+      window.onscroll = function () {
+        // console.log(document.documentElement.scrollTop)
+        // console.log(document.documentElement.scrollHeight)
+        // console.log(innerHeight)
+
+        let scTop = document.documentElement.scrollTop;
+
+        if (scTop > 20) {
+          document.querySelector('nav').style.backgroundColor = 'green';
+        } else {
+          document.querySelector('nav').style.removeProperty('background-color');
+        }
+
+        // if (scTop > oldScTop) {
+        //   console.log('DOWN');
+        //   document.querySelector('nav').style.height = '0';
+        //   document.querySelector('nav').style.overflow = 'hidden';
+        // } else {
+        //   console.log('UP');
+        //   document.querySelector('nav').style.removeProperty('height');
+        //   document.querySelector('nav').style.removeProperty('overflow');
+        // }
+
+        if (scTop > 50) {
+          document.querySelector('.go-top').style.display = 'block';
+        } else {
+          document.querySelector('.go-top').style.removeProperty('display')
+        }
+
+        document.getElementById('img1').style.top = scTop * .5 +'px';
+        oldScTop = scTop;
+      };
+
+      // document.querySelector('body')
+      window.onmousewheel = function (e) {
+        console.log(e.deltaY)
+        // if(e.deltaY > 0)
+        //   window.scrollBy(0, window.innerHeight);
+        // else
+        //   window.scrollBy(0, -window.innerHeight);
+        
+        const direction = Math.sign(e.deltaY)
+        window.scrollBy(0, window.innerHeight * direction);
+      };
+    </script>
+  </body>
+</html>
